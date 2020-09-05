@@ -35,6 +35,10 @@ button {
     border-radius: 10px;
     border: 2px solid black;
     box-shadow: 1px 1px black;
+
+    display: flex;
+   justify-content: space-around;
+    
 }
 
 div > .completed{
@@ -42,3 +46,15 @@ div > .completed{
     background-color: rgba(246, 96, 96, 0.3);
     
 }
+section > .tasks{
+    border: 2px solid black;
+    display: flex;
+    border-radius: 20px;
+    width: 50%;
+    height: auto;
+    align-items: center;
+    background-color: pink;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+

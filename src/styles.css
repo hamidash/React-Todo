@@ -1,0 +1,60 @@
+
+label > input {
+    background-color: rgba(247, 175, 175, 0.3);
+    border: 0;
+    padding: 6px 0;
+    font-size: 1rem;
+    width: 240px;
+    outline: 0;
+    color: rgb(31, 8, 8);
+    border-bottom: 1px solid #e64944;
+    margin-right: 8px;
+}
+
+button {
+    background-color: #5ddaf0;
+    border: 1px solid #529cf1;
+    box-shadow: 1% 1%;
+    box-shadow: 1px 1px black;
+    color: white;
+    font-size: 16px;
+    padding: 6px 14px;
+    border-radius: 10px;
+    margin: 1%;
+}
+
+.task{
+    background-color: #e64944;
+    width: 45%;
+    text-align: left;
+    margin: 4px 0;
+    padding-left: 8px;
+    cursor: pointer;
+    width: 20%;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 1px 1px black;
+
+    display: flex;
+   justify-content: space-around;
+    
+}
+
+div > .completed{
+    text-decoration: line-through;
+    background-color: rgba(246, 96, 96, 0.3);
+    
+}
+section > .tasks{
+    border: 2px solid black;
+    display: flex;
+    border-radius: 20px;
+    width: 50%;
+    height: auto;
+    align-items: center;
+    background-color: pink;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+

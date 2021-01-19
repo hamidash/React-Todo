@@ -1,42 +1,35 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class TodoForm extends Component {
-  state = {
-    taskName: "",
-  };
+const TodoForm = (props) => {
 
-  submitHandler = (e) => {
-    e.preventDefault();
-    this.props.addTask(this.state.taskName);
-    this.setState({
-      taskName: "",
-    });
-  };
+  //2. Declare form state
+  const [task, setTask] = useState('');
 
-  changeHandler = (e) => {
-    this.setState({
-      taskName: e.target.value,
-    });
-  };
-
-  render() {
-    return (
-      <form action="" >
-        <label htmlFor="taskName">
-          <input
-            type="text"
-            name="taskName"
-            onChange={this.changeHandler}
-            value={this.state.taskName}
-            placeholder="Add your tasks here"
-            autoComplete="off"
-          />
-        </label>
-        <button className="button" onClick={this.submitHandler}>Add To Do</button>
-        <button className="btn clear" onClick = {this.props.clearDoneTasks}>Clear Tasks</button>
-      </form>
-    );
+ 
+  const changeHandler = (e) => {
+     setTask(e.target.value);
   }
+
+  //3.When form is submited it calles 'addTask' fuction from props and updates App's state 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    //console.log("test");
+    props.addTask(task);
+    setTask('');
+  }
+
+  //1.Return 'header' with h1 and a form 
+  return (
+    <div className='header'>
+      <h1>ToDo List</h1>
+      <form action="" onSubmit = {submitHandler}>
+        <input type="text" value = {task} onChange = {changeHandler}/>
+        <button>Add task</button>
+      </form>
+    </div>
+  )
 }
 
 export default TodoForm;
+
+

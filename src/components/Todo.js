@@ -1,20 +1,17 @@
 import React from "react";
 
-/* Task component to create a div for each task that it gets from Tasks data 
-(this data comes from TodoList component as a prop which also gets it from APP.js)
-    - Div has a dynmaic classname, which is either "task" if task.completed equals false or it is "task completed" if the task.completed equals true
-    - Div has h3, which displays the name of the task from Task data (task.taskName) dynamically for each task object
-     */
-
-function Task(props) {
+const ToDo = (props) => {
+  //Returns div whick onClick calls toggleTask function 
+  //and passes it as argument task object's id
+  //Div's className is determined with ternery as 'task completed' or 'task'
   return (
     <div
-      onClick={() => props.completeTask(props.task.id)}
-      className={`task${props.task.completed ? " completed" : ""}`}
+      onClick={() => props.toggleTask(props.task.id)}
+      className={props.task.completed ? "task completed" : "task"}
     >
-      <h3>{props.task.taskName}</h3>
+      <p>{props.task.taskName}</p>
     </div>
   );
-}
+};
 
-export default Task;
+export default ToDo;

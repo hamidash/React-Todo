@@ -1,31 +1,28 @@
 import React, { Component } from "react";
-import TodoList from "./components/TodoList";
 import TodoForm from "./components/TodoForm";
-import "./styles.css";
+import ToDoList from "./components/TodoList";
 
-//1. Add dummy tasks data
+import "./components/styles.css";
 
+// Mock default data
 const tasks = [
   {
-    taskName: "Go to school",
-    id: 100,
+    taskName: "Organize Garage",
+    id: 1528817077286,
     completed: false,
   },
   {
-    taskName: "Learn JS",
-    id: 200,
+    taskName: "Bake Cookies",
+    id: 1528817084358,
     completed: false,
   },
 ];
 
-//2. Build App component as a class
-
-class App extends Component {
+class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
 
-  // 3. Add state to our app, which takes dummy data from the above
   constructor() {
     super();
     this.state = {
@@ -33,11 +30,11 @@ class App extends Component {
     };
   }
 
-  /*5. addTask function to handle new task creation once form is submitted and update the App state (this.state.tasks)
-        by using this.setState function */
-
+  //2. Add functionality, that takes 'taskName' argument 
+  //   and adds it as a new object to existing state with random id and false completed status
   addTask = (taskName) => {
-    const newTask = {
+    console.log(taskName);
+    const newTasks = {
       tasks: [
         ...this.state.tasks,
         {
@@ -48,16 +45,16 @@ class App extends Component {
       ],
     };
 
-    this.setState(newTask);
+    this.setState(newTasks);
   };
 
- /*6. completeTask function to handle the click on any "Task" div, 
- and match the task id passed in its arguments and change its "completed" status to opposite value, */
+  // 3.Toggle function that takes 'taskId' argument and compares it with each state object's id 
+  // and changes completed value to opposite if id matches, else it returns the object as it is
 
-  completeTask = (taskId) => {
+  toggleTask = (taskId) => {
     this.setState({
       tasks: this.state.tasks.map((task) => {
-        if (task.id == taskId) {
+        if (task.id === taskId) {
           return {
             ...task,
             completed: !task.completed,
@@ -68,37 +65,28 @@ class App extends Component {
     });
   };
 
-  /*7. clearDoneTasks to handle Clear button on the TodoForm and filter Tasks data by task completed status is false (not completed) 
-  and use setState function to set Tasks data to newly flitered array where only tasks with task completed status of false are left*/ 
-
-  clearDoneTasks = (e) => {
-    e.preventDefault();
+  //4.Clear function that filters existing state by false completed status 
+  //and updates state with filtered values
+  clearTask = () => {
+    const notCompletedTasks = this.state.tasks.filter((task) => {
+      return task.completed == false;
+    });
+    //console.log(notCompletedTasks);
     this.setState({
-      tasks: this.state.tasks.filter((task) => {
-        return task.completed === false; 
-      }),
+      tasks: notCompletedTasks,
     });
   };
 
-
-  // 4. Render Todo Form component and TodoList component as separate sections within the App
+  //1. Return TodoForm and TodoList component and pass required props to each component
   render() {
     return (
       <div className="App">
-        <section className="form">
-          <TodoForm
-            tasks={this.state.tasks}
-            addTask={this.addTask}
-            clearDoneTasks={this.clearDoneTasks}
-          />
-        </section>
-        <section className="tasks">
-          <TodoList
-            tasks={this.state.tasks}
-            clearDoneTasks={this.clearDoneTasks}
-            completeTask={this.completeTask}
-          />
-        </section>
+        <TodoForm addTask={this.addTask} />
+        <ToDoList
+          tasks={this.state.tasks}
+          toggleTask={this.toggleTask}
+          clearTask={this.clearTask}
+        />
       </div>
     );
   }
